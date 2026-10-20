@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="static/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="static/AdminLTE/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="static/css/vtoy-modern.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->    
     
@@ -42,9 +43,6 @@
     
     
     <style type="text/css">
-    * {
-         font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-     }
     .modal {
         padding-top: 80px;
     }
@@ -53,17 +51,19 @@
     }
     span.vtoy_ver {
         display:inline-block;
-        font-size:28px;
-        font-weight:bold;
-        color:red; 
-        width:60%; 
+        font-size:26px;
+        font-weight:700;
+        letter-spacing:-.02em;
+        color:var(--vt-link);
+        width:60%;
         text-align:center;
     }
     span.vtoy_part {
         display:inline-block;
-        font-size:14px;
-        font-weight:bold;
-        width:15%; 
+        font-size:12px;
+        font-weight:600;
+        color:var(--vt-muted);
+        width:15%;
         text-align:right;
     }
     span.vtoy_secure {
@@ -71,7 +71,7 @@
         font-size:20px;
         font-weight:bold;
         width:15%; 
-        color:#ea991f;
+        color:var(--vt-warning);
         text-align:center;
         visibility: hidden;
     }
@@ -141,11 +141,11 @@
         -moz-appearance: none;
         -webkit-appearance: none;
         appearance: none;
-        background-image: url("static/img/dropdown.png");
+        background-image: var(--vt-select-arrow);
         background-repeat: no-repeat;
-        background-position: calc(100% - 7px) 50%;
-        background-size: 2% auto;
-        border-radius:3px;
+        background-position: calc(100% - 12px) 50%;
+        background-size: 12px 12px;
+        border-radius:8px;
         padding:0;
         padding-left:15px;
     }
@@ -154,11 +154,11 @@
         -moz-appearance: none;
         -webkit-appearance: none;
         appearance: none;
-        background-image: url("static/img/dropdown.png");
+        background-image: var(--vt-select-arrow);
         background-repeat: no-repeat;
-        background-position: calc(100% - 7px) 50%;
-        background-size: 10% auto;
-        border-radius:3px;
+        background-position: calc(100% - 12px) 50%;
+        background-size: 12px 12px;
+        border-radius:8px;
         padding:0;
         padding-left:15px;
     }
@@ -233,7 +233,7 @@
 <!-- Main content -->
 <section class="content" id="vtoy-content">
 <div >
-    <div class="row" style="margin-top:-10px; width:535px; font-family:courier new; font-weight:bold;align:center;text-align:center;">
+    <div class="row" style="margin-top:-10px; width:535px; align:center;text-align:center;">
         <ul class="nav nav-tabs" style="margin-left:5px;">
           <li class="dropdown">
             <a class="dropdown-toggle noselect" id='vtoy_option' data-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">配置选项 <span class="caret"></span></a>
@@ -272,7 +272,7 @@
             </div>
           
             <div style="float:right;">
-                <img src="static/img/refresh.ico" alt="" id="refresh_dev_img" style="cursor: pointer;"></img>
+                <span id="refresh_dev_img" class="fa fa-refresh" role="button" title="Refresh"></span>
             </div>
         </div>
           
@@ -309,8 +309,8 @@
         </div>
         
         <div class="row"  style="width:520px;margin-top:2px;">
-            <button id="VtoyBtnInstall" onclick="on_vtoy_install()" class="btn btn-default" style="font-weight:bold; width:150px;margin-left:70px;">安装</button>
-            <button id="VtoyBtnUpdate" onclick="on_vtoy_update()" class="btn btn-default" style="font-weight:bold; width:150px;margin-left:70px;">升级</button>
+            <button id="VtoyBtnInstall" onclick="on_vtoy_install()" class="btn btn-primary" style="font-weight:600; width:150px;margin-left:70px;">安装</button>
+            <button id="VtoyBtnUpdate" onclick="on_vtoy_update()" class="btn btn-primary" style="font-weight:600; width:150px;margin-left:70px;">升级</button>
         </div>
     </div>    
     

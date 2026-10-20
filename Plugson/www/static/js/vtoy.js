@@ -58,6 +58,9 @@ function ventoy_common_check_path(path) {
 
 // 加载子页面内容
 function loadContent(page) {
+    $("#plugson-menu li").removeClass("active");
+    $('#plugson-menu a[data-href="#' + page + '"]').parent().addClass("active");
+
     $("#plugson-content").load(page + ".html?_=" + (new Date().getTime()), function() {
         $("body").scrollTop(0);
     });

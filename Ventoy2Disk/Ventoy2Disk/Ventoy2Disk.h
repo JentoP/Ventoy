@@ -236,6 +236,13 @@ extern HFONT g_language_normal_font;
 extern HFONT g_language_bold_font;
 extern int g_FilterUSB;
 
+#define VTOY_COLOR_ACCENT   RGB(0x25, 0x63, 0xEB)
+#define VTOY_COLOR_WARNING  RGB(0xD9, 0x77, 0x06)
+#define VTOY_COLOR_DANGER   RGB(0xDC, 0x26, 0x26)
+#define VTOY_COLOR_MUTED    RGB(0x64, 0x74, 0x8B)
+
+HFONT VentoyCreateFont(int Height, int Weight, const WCHAR *Face);
+
 
 
 void TraceOut(const char *Fmt, ...);

@@ -22,6 +22,16 @@
     <link rel="stylesheet" href="static/AdminLTE/css/skins/skin-blue.min.css">
     <link rel="stylesheet" href="static/datatables/dataTables.bootstrap.css">
     <link rel="stylesheet" href="static/css/vtoy.css">
+    <link rel="stylesheet" href="static/css/vtoy-modern.css?v=331">
+    <script>
+    // Apply the saved light/dark choice before first paint (no choice = follow the system)
+    try {
+        var vtoy_saved_theme = localStorage.getItem('vtoy_theme');
+        if (vtoy_saved_theme === 'light' || vtoy_saved_theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', vtoy_saved_theme);
+        }
+    } catch (e) {}
+    </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -30,9 +40,6 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
-    * {
-         font-family: 'Arial','Microsoft YaHei','黑体','宋体',sans-serif;
-     }
     .modal {
         padding-top: 80px;
     }
@@ -60,6 +67,12 @@
 
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="javascript:void(0)" id="id_a_theme" title="Light / Dark">
+                                <span id="id_span_theme_icon" class="fa fa-moon-o"></span>
+                            </a>
+                        </li>
+
                         <li class="dropdown user user-menu">
                             <a href="javascript:void(0)" id="id_a_preview">
                                 <span class="fa fa-file-code-o"></span>&nbsp;&nbsp;
@@ -858,6 +871,36 @@
 
     });
 
+    function VtoyIsDarkTheme() {
+        var theme = document.documentElement.getAttribute('data-theme');
+        if (theme) {
+            return theme === 'dark';
+        }
+        return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+
+    function VtoyUpdateThemeIcon() {
+        $('#id_span_theme_icon').attr('class', VtoyIsDarkTheme() ? 'fa fa-sun-o' : 'fa fa-moon-o');
+    }
+
+    function VtoyThemeClick() {
+        var theme = VtoyIsDarkTheme() ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+        try {
+            localStorage.setItem('vtoy_theme', theme);
+        } catch (e) {}
+        VtoyUpdateThemeIcon();
+    }
+
+    VtoyUpdateThemeIcon();
+    if (window.matchMedia) {
+        var vtoy_dark_query = window.matchMedia('(prefers-color-scheme: dark)');
+        if (vtoy_dark_query.addListener) {
+            vtoy_dark_query.addListener(VtoyUpdateThemeIcon);
+        }
+    }
+
+    $('#id_a_theme').click(VtoyThemeClick);
     $('#id_btn_json_copy').click(VtoyJsonCopyClick);
     $('#id_a_preview').click(VtoyPreviewClick);
     $('#id_a_language').click(VtoyLanguageClick);
